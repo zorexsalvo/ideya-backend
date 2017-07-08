@@ -15,7 +15,7 @@ class Problem(models.Model):
 
         if not self.problem_id:
             self.problem_id = '{0:05d}'.format(self.id)
-            super(Problem, self).save(*args, **kwargs)
+            Problem.objects.filter(id=self.id).update(problem_id=self.problem_id)
 
 
 class Solution(models.Model):
