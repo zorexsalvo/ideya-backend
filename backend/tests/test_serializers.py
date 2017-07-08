@@ -12,6 +12,13 @@ class SerializerTestCase(TestCase):
         problem.created_by = 'thedeveloper'
         problem.save()
 
+        solution = Solution()
+        solution.problem = problem
+        solution.description = 'Yeah, your lookini\' at the ' \
+                'truth the money never lie no'
+        solution.created_by = 'imtheone'
+        solution.save()
+
     def test_get_problems(self):
         url = reverse('problem_list')
         client = APIClient()
@@ -26,6 +33,26 @@ class SerializerTestCase(TestCase):
             'title': 'We the Best Music',
             'description': 'Another one!',
             'created_by': 'DJ Khaled'
+        }
+
+        response = client.post(url, data=payload, format='json')
+        self.assertEqual(201, response.status_code)
+
+    def test_get_solutions(self):
+        url = reverse('solution_list')
+        client = APIClient()
+
+        response = client.get(url)
+        self.assertEqual(1, len(response.json()))
+
+    def test_create_solution(self):
+        url = reverse('solution_list')
+        client = APIClient()
+
+        payload = {
+            'problem': 'P0001',
+            'description': 'alright',
+            'created_by': 'me'
         }
 
         response = client.post(url, data=payload, format='json')
