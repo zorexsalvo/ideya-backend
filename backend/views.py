@@ -1,6 +1,12 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
+from .serializers import ProblemSerializer, SolutionSerializer
+from .models import Problem, Solution
+from rest_framework import generics
 
-from django.shortcuts import render
+class ProblemList(generics.ListCreateAPIView):
+    queryset = Problem.objects.all()
+    serializer_class = ProblemSerializer
 
-# Create your views here.
+
+class SolutionList(generics.ListCreateAPIView):
+    queryset = Solution.objects.all()
+    serializer_class = SolutionSerializer
