@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.test import TestCase
-from .models import Problem, Solution
+from backend.models import Problem, Solution
 
 class ProblemTestCase(TestCase):
     def setUp(self):
@@ -24,8 +24,6 @@ class ProblemTestCase(TestCase):
                 'be it in a hot sunny weather or a stormy day.'
         problem.created_by = 'concerned_citizen'
         problem.save()
-
-        print(problem.problem_id)
 
         self.assertEqual(2, Problem.objects.count())
         self.assertIsNotNone(problem.problem_id)
