@@ -5,7 +5,7 @@ from rest_framework import serializers
 class ProblemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Problem
-        fields = ('id', 'title', 'description', 'created_by')
+        fields = ('problem_id', 'title', 'description', 'created_by')
 
 
 class SolutionSerializer(serializers.ModelSerializer):

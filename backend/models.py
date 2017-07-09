@@ -5,8 +5,18 @@ from django.db import models
 
 
 class Problem(models.Model):
+    CATEGORIES = (
+        ('HEALTH', 'Health'),
+        ('ECONOMY', 'Economy'),
+        ('EDUCATION', 'Education'),
+        ('MEDIA', 'Media'),
+        ('COMMUNITY', 'Community'),
+        ('ENVIRONMENT', 'Environment')
+    )
+
     problem_id = models.CharField(max_length=255, unique=True, blank=True, null=True)
     title = models.CharField(max_length=255)
+    category = models.CharField(max_length=255, choices=CATEGORIES, default='HEALTH')
     description = models.TextField(max_length=255)
     created_by = models.CharField(max_length=255)
 
